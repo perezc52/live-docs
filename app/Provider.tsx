@@ -9,7 +9,7 @@ import Loader from "@/components/Loader";
 
 export default function Room({ children }: { children: ReactNode }) {
   return (
-    <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
+    <LiveblocksProvider authEndpoint="/api/liveblocks-auth" resolveUsers={async ({userIds}) => {}}>
       <ClientSideSuspense fallback={<Loader />}>{children}</ClientSideSuspense>
     </LiveblocksProvider>
   );
