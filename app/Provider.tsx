@@ -6,7 +6,7 @@ import {
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 import Loader from "@/components/Loader";
-import { getClerkUsers } from "@/lib/actions/users.actions";
+import { getClerkUsers, getDocumentUsers } from "@/lib/actions/users.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { useUser } from "@clerk/nextjs";
 
@@ -22,7 +22,7 @@ export default function Room({ children }: { children: ReactNode }) {
       resolveMentionSuggestions={async ({ text, roomId }) => {
         const roomUsers = await getDocumentUsers({
           roomId,
-          currentUser: clerkUser?.emailAddresses[0].emailAddress,
+          currentUser: clerkUser?.emailAddresses[0].emailAddress!,
           text,
         });
         return roomUsers;
